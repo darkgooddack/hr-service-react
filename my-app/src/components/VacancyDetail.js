@@ -27,7 +27,7 @@ const VacancyDetail = () => {
     }, [id]);
 
     const handleEdit = () => {
-        navigate(`/vacancy/edit/${id}`);  // Используем navigate вместо history.push
+        navigate(`/vacancy/edit/${id}`);
     };
 
     const handleDelete = async () => {
