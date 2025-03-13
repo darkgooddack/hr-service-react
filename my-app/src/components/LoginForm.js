@@ -8,7 +8,6 @@ const LoginForm = ({ onLoginSuccess }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Создаем объект данных
         const formData = {
             username: username,
             password: password
@@ -17,19 +16,18 @@ const LoginForm = ({ onLoginSuccess }) => {
         try {
             const response = await fetch('http://localhost:8000/api/v1/auth/token', {
                 method: 'POST',
-                body: JSON.stringify(formData),  // Передаем данные в JSON-формате
+                body: JSON.stringify(formData),
                 headers: {
-                    'Content-Type': 'application/json',  // Указываем, что передаем JSON
+                    'Content-Type': 'application/json',
                 },
             });
 
             const data = await response.json();
 
             if (response.ok) {
-                // Сохраняем токен в localStorage
                 localStorage.setItem('access_token', data.access_token);
                 setError('');
-                onLoginSuccess();  // Переход к следующей странице после успешного логина
+                onLoginSuccess();  // Уведомление об успешной авторизации
             } else {
                 setError(data.detail || 'Ошибка авторизации');
             }
